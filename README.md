@@ -25,7 +25,7 @@ here port is 8000
 This a registration form designed using html, CSS, JavaScript and Django framework.
 The user enters username and email address. The username and email are validated. After successful validation the user is registered.
 
-We have used SQlite as the database for development purposes.
+SQlite database is used for development purposes.
 To make the project scaleable 
 1.We can migrate the database to a scalable database like PostgreSQL.
 2.Since we have dockerized the application we can deploy it on K8s pods with autoscaling.
