@@ -1,0 +1,63 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+
+<script>
+function ValidateEmail(inputText)
+{
+    console.log(inputText)
+    if (inputText == "") {
+    alert("Email must be filled out");
+    return false;
+  }
+  else{
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(!inputText.match(mailformat))
+    {
+        alert("You have entered an invalid email address!");
+
+        return false;
+    }
+  }
+    return true;
+}
+
+
+function myFunction() {
+    
+  let x = document.forms.myForm.fname.value;
+  let y = document.forms.myForm.email.value;
+  if (x == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+  return ValidateEmail(y);
+}
+</script>
+
+{% if messages %}
+    {% for msg in messages %}
+            <script>alert("Form submission successful!");</script>
+    {% endfor %}
+{% endif %}
+
+<div class="wrapper">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/User_Avatar_2.png" alt="">
+        </div>
+        <div class="text-center mt-4 name">
+            Register
+        </div>
+        <form class="p-3 mt-3"  action="{% url 'polls:index' %}"  onsubmit="return myFunction()" method="post" name="myForm">
+            {% csrf_token %}
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="fname" id="userName" placeholder="Username">
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="email" name="email" id="pwd" placeholder="Email id">
+            </div>
+            <input class="btn mt-3" type="submit"></input>
+        </form>
+    </div>
